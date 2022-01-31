@@ -5,6 +5,11 @@
       "ProjectGuid": "a6699a32-6505-48fc-837f-f5a5d74134b2",
       "DisplayName": "Computer_Management_App",
       "ColorIndex": 0
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Miscellaneous Files",
+      "ColorIndex": -1
     }
   },
   "NextColorIndex": 1
