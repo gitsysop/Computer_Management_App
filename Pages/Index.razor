@@ -19,6 +19,44 @@
             <th scope="col">Location</th>
         </tr>
     </thead>
+    <tbody>
+        @if (_computers != null)
+        {
+            foreach (var computer in _computers)
+            {
+                <tr>
+                    <td>@computer.ComputerName</td>
+                    <td>@computer.ComputerMac</td>
+                    <td>@computer.ComputerIp</td>
+                    <td>@computer.ComputerModel</td>
+                    <td>@computer.ComputerGroup</td>
+                    <td>@computer.ComputerLocation</td>
+                    <td>
+                        <a href="/edit/@computer.Id" class="btn btn-warning">Edit</a>
+                        <button class="btn btn-danger" @onclick="() => Deletecomputer(computer)">Delete</button>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
 </table>   
 
+@code
+{
+    [Inject] Computer_Management_AppContext Computer_Management_AppContext { get; set; }
+    private List<Computer> _computers = new List<Computer>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        _computers = await Computer_Management_AppContext.Computers.ToListAsync();        
+    }
+
+    private async Task Deletecomputer(Computer computerToDelete)
+    {
+        Computer_Management_AppContext.Computers.Remove(computerToDelete);
+        await Computer_Management_AppContext.SaveChangesAsync();
+        _computers.Remove(computerToDelete);
+        StateHasChanged();
+    }
+}
 
